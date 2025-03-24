@@ -12,6 +12,9 @@ from streamlit_option_menu import option_menu
 
 # # # # #  FIN LIBRERÍAS # # # # #
 
+
+# # # # # INICIO SOBRE NOSOTROS FUNCTION # # # # #
+
  # Se configura la página para aprovechar todo el espacio:
 st.set_page_config(page_title="Sobre Nosotros - Clara's Car Corner", page_icon=":car:", layout="wide");
 
@@ -82,7 +85,7 @@ st.markdown("""
 """);
 
 # Imagen del equipo
-st.image("images/equipo_image.png", use_container_width=True);
+st.image("images/equipo_image.jpg", use_container_width=True);
 
 # Espacio
 st.markdown("<br>", unsafe_allow_html=True);
@@ -160,6 +163,6 @@ with col3:
 # Espacio
 st.markdown("<br>", unsafe_allow_html=True)
 
-# # # # # INICIO SOBRE NOSOTROS FUNCTION # # # # #
+
 
 # # # # # FIN SOBRE NOSOTROS FUNCTION # # # # #
