@@ -117,9 +117,9 @@ with st.container():
     elif menu == "Sobre Nosotros":
         switch_page("nosotros_page")
     elif menu == "Nuestro Método":
-        st.write("En proceso...")
+        switch_page("metodo_page")
     elif menu == "Contáctanos":
-        st.write("Contacto")
+        switch_page("contacto_page")
 
 
 # Función para cargar el modelo (se accede al hub de Hugging Face)::

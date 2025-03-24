@@ -15,8 +15,8 @@ from streamlit_option_menu import option_menu
 
 # # # # # INICIO SOBRE NOSOTROS FUNCTION # # # # #
 
- # Se configura la página para aprovechar todo el espacio:
-st.set_page_config(page_title="Sobre Nosotros - Clara's Car Corner", page_icon=":car:", layout="wide");
+# Se configura la página para aprovechar todo el espacio:
+st.set_page_config(page_title=" 🤗 Sobre Nosotros 🧑🏿‍🤝‍🧑🏽", page_icon=":car:", layout="wide");
 
 # Se aplica el color de fondo deseado:
 page_bg_color = """
@@ -61,13 +61,13 @@ with st.container():
     elif menu == "Sobre Nosotros":
         pass
     elif menu == "Nuestro Método":
-        st.write("En proceso...")
+        switch_page("metodo_page")
     elif menu == "Contáctanos":
-        st.write("Contacto")
+        switch_page("contacto_page")
 
 
 # Título
-st.markdown("<h1 style='text-align: center; font-family: \"Droid Sans Mono\", monospace;'>Sobre Nosotros</h1>", unsafe_allow_html=True);
+st.markdown("<h1 style='text-align: center; font-family: \"Droid Sans Mono\", monospace;'>🤗 Sobre Nosotros 🧑🏿‍🤝‍🧑🏽  </h1>", unsafe_allow_html=True);
 
 # Espacio
 st.markdown("<br>", unsafe_allow_html=True);
@@ -133,10 +133,10 @@ st.markdown("## Lo que dicen nuestros clientes 🗣️💬")
 
 # Definir las opiniones de los clientes
 opiniones = [
-    {"nombre": "Ana, Madrid", "texto": "¡Fue una experiencia increíble! El proceso de tasación fue rápido y transparente. ¡Vender mi coche fue mucho más fácil de lo que pensaba!"},
-    {"nombre": "Jorge, Barcelona", "texto": "El equipo de Clara's Car Corner me ayudó a obtener un precio justo por mi coche. Todo fue muy profesional y sin complicaciones."},
-    {"nombre": "María, Valencia", "texto": "Recomiendo totalmente esta plataforma. Me guiaron en cada paso y me dieron el valor exacto de mi coche."},
-    {"nombre": "Carlos, Sevilla", "texto": "La plataforma es fácil de usar, y el servicio es excelente. Me ayudaron a vender mi coche sin estrés. ¡Muy recomendados!"}
+    {"nombre": "Ana, Madrid ⭐⭐⭐⭐⭐", "texto": "¡Fue una experiencia increíble! El proceso de tasación fue rápido y transparente. ¡Vender mi coche fue mucho más fácil de lo que pensaba!"},
+    {"nombre": "Jorge, Barcelona ⭐⭐⭐⭐⭐", "texto": "El equipo de Clara's Car Corner me ayudó a obtener un precio justo por mi coche. Todo fue muy profesional y sin complicaciones."},
+    {"nombre": "María, Valencia ⭐⭐⭐⭐⭐", "texto": "Recomiendo totalmente esta plataforma. Me guiaron en cada paso y me dieron el valor exacto de mi coche."},
+    {"nombre": "Carlos, Sevilla ⭐⭐⭐⭐⭐", "texto": "La plataforma es fácil de usar, y el servicio es excelente. Me ayudaron a vender mi coche sin estrés. ¡Muy recomendados!"}
 ]
 
 # Creación de carrusel de opiniones con botones de navegación

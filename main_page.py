@@ -20,6 +20,8 @@ def main():
         """
     st.markdown(page_bg_color, unsafe_allow_html=True)
 
+    st.markdown("<br>", unsafe_allow_html=True)
+
     # # # Barra de Navegación Superior usando streamlit-options-menu # # #
     with st.container():
         menu = option_menu(
@@ -54,13 +56,15 @@ def main():
     elif menu == "Sobre Nosotros":
         switch_page("nosotros_page")
     elif menu == "Nuestro Método":
-        st.write("En proceso...")
+        switch_page("metodo_page")
     elif menu == "Contáctanos":
-        st.write("Contacto")
+        switch_page("contacto_page")
 
     # # # Resto de la página principal # # #
     st.markdown("<br>", unsafe_allow_html=True)
     st.markdown("<h1 style='text-align: center; font-family: \'Droid Sans Mono\', monospace;'> 🚗 CLARA'S CAR CORNER 🚗 </h1>", unsafe_allow_html=True)
+    st.markdown("<br>", unsafe_allow_html=True)
+
     st.image("images/portada_coches.png", use_container_width=True)
     
     # Texto introductorio para la página de la empresa
@@ -83,17 +87,6 @@ def main():
         ---
         ¡Descubre todo lo que **Clara's Car Corner** tiene para ofrecerte! 🌟
     """)
-
-    st.markdown("<h3 style='text-align: center; font-family: \'Droid Sans Mono\', monospace;'>¿Eres un particular o una empresa?</h3>", unsafe_allow_html=True)
-    col1, col2, col3 = st.columns([1, 1, 1])
-    with col2:
-        col_a, col_b = st.columns(2)
-        with col_a:
-            if st.button("Particular"): 
-                switch_page("particular_page")
-        with col_b:
-            if st.button("Empresa"): 
-                switch_page("empresa_page")
 
 if __name__ == "__main__":
     main()

@@ -111,9 +111,9 @@ with st.container():
     elif menu == "Sobre Nosotros":
         switch_page("nosotros_page")
     elif menu == "Nuestro Método":
-        st.write("En proceso...")
+        switch_page("metodo_page")
     elif menu == "Contáctanos":
-        st.write("Contacto")
+        switch_page("contacto_page")
 
 # Título - 🏢🚘 Tasación - Flota Empresa 🚗🏣:
 st.markdown("<h1 style = 'text-align: center'; font-family: \'Droid Sans Mono\', monospace;'> 🏢🚘 Tasación - Flota Empresa 🚗🏣 </h1>", unsafe_allow_html = True);

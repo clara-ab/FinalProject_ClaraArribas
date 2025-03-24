@@ -60,9 +60,9 @@ with st.container():
     elif menu == "Sobre Nosotros":
         switch_page("nosotros_page")
     elif menu == "Nuestro Método":
-        st.write("En proceso...")
+        switch_page("metodo_page")
     elif menu == "Contáctanos":
-        st.write("Contacto")
+        switch_page("contacto_page")
 
 
 # Título - 👩🏽 Particular 👨🏼:
