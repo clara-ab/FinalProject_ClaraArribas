@@ -7,6 +7,9 @@ import streamlit as st
 # Librería para poder cambiar de páginas de visualización:
 from streamlit_extras.switch_page_button import switch_page
 
+# Librería para el menú de opciones:
+from streamlit_option_menu import option_menu  
+
 # Librería para poder utilizar el tipo de datos pickle:
 import pickle
 
@@ -19,13 +22,13 @@ import numpy as np
 # Librería para poder conectarse al Hub de Hugging Face:
 from huggingface_hub import hf_hub_download
 
-# Librería para el menú de opciones:
-from streamlit_option_menu import option_menu  
-
 # # # # # FIN LIBRERÍAS # # # # #
 
 
-# Configuración de la página
+
+# # # # #  INICIO FUNCIÓN TASADOR PARTICULAR # # # # #
+
+# Configuración de la página:
 st.set_page_config(page_title="👩🏽 Tasación - Particular 👨🏼", page_icon=":car:", layout="wide");
 
 # Estilos CSS para mejorar la apariencia
@@ -50,7 +53,7 @@ def aplicar_estilos():
             color: #252124;
         }
         .stSidebar .stButton>button {
-            background-color: #fff0fb;  /* Color pastel para el botón de la barra lateral */
+            background-color: #fff0fb; 
             color: #252124;
             font-size: 18px;
             padding: 10px 20px;
@@ -84,17 +87,31 @@ def aplicar_estilos():
 # Se aplican todos los estilos definidos a la página:
 aplicar_estilos();
 
-# # # Barra de Navegación Superior usando streamlit-options-menu # # #
+# # # Barra de Navegación Superior # # #
 with st.container():
+    # Se define la barra de navegación:
     menu = option_menu(
-        menu_title = None,  # No título para el menú
+
+        # No se coloca título al menú:
+        menu_title = None,
+
+        # Se colocan las opciones de la barra de navegación:
         options = ["Inicio", "Tasación - Particular", "Tasación - Empresa", "Sobre Nosotros", "Nuestro Método", "Contáctanos"],
+
+        # Se colocan iconos acompañando a los textos:
         icons = ["house", "person-fill", "building", "info-circle", "clipboard-check", "phone"],
-        orientation = "horizontal",  # Menú horizontal
-        default_index = 1,  # Establecer "Inicio" como la opción por defecto
+
+        # Orientación horizontal de la barra:
+        orientation = "horizontal",
+
+        # Se establece visualmente que se está en la pantalla de 'Tasación - Particular' [index = 1]
+        default_index = 1,
+
+        # Se define el estilo de la barra de navegación:
         styles={
-            "container": {"padding": "0!important", "background-color": "#fffafe"},  # Fondo como el del resto de la página
+            "container": {"padding": "0!important", "background-color": "#fffafe"},  # Se establece el color del container como el color de fondo
             "icon": {"color": "#5c0048", "font-size": "20px"},  # Color de los íconos
+            # Estilo de las letras:
             "nav-link": {
                 "font-size": "16px",
                 "text-align": "center",
@@ -105,43 +122,47 @@ with st.container():
             },
             "nav-link-selected": {"background-color": "#eeb1e1"},  # Color de la opción seleccionada
         }
-    )
+    );
 
-    # Redirigir según la opción seleccionada:
+    # Se redirije a la página correspondiente según la opción seleccionada:
     if menu == "Inicio":
         switch_page("main_page")
     elif menu == "Tasación - Particular":
-        pass
+        pass # tasar_coche_particular... es Tasación - Particular por lo que no se hace nada si hacen click
     elif menu == "Tasación - Empresa":
-        switch_page("empresa_page")
+        switch_page("empresa_page");
     elif menu == "Sobre Nosotros":
-        switch_page("nosotros_page")
+        switch_page("nosotros_page");
     elif menu == "Nuestro Método":
-        switch_page("metodo_page")
+        switch_page("metodo_page");
     elif menu == "Contáctanos":
-        switch_page("contacto_page")
+        switch_page("contacto_page");
 
-
-# Función para cargar el modelo (se accede al hub de Hugging Face)::
+# Función para cargar el modelo:
 def cargar_modelo():
+
+    # Se descarga el modelo desde Hugging Face:
     modelo_path = hf_hub_download(repo_id="clara-ab/random_forest_grid_model", filename="random_forest_grid_model.pkl");
+
+    # Se carga el modelo descargado:
     with open(modelo_path, "rb") as file:
         return pickle.load(file);
 
-# Función para cargar los encoders (se accede al hub de Hugging Face):
+# Función para cargar el diccionario de encoders desde Hugging Face:
 def cargar_encoders():
+
+    # Se descarga el diccionario de encoders desde Hugging Face:
     encoders_path = hf_hub_download(repo_id="clara-ab/random_forest_grid_model", filename="encoders.pkl");
+
+    # Se cargan los encoders desde la ruta descargada
     with open(encoders_path, "rb") as file:
         return pickle.load(file);
 
 
+# Título - 🚗👨🏼 Tasación de tu coche 🚗👩🏽:
+st.markdown("<h1 style = 'text-align: center'; font-family: \'Droid Sans Mono\', monospace;'> 🚗👨🏼 Tasación de tu coche 🚗👩🏽 </h1>", unsafe_allow_html = True);
 
-# # # # #  INICIO FUNCIÓN TASADOR PARTICULAR # # # # #
-
-# Título de la página:
-st.markdown("## 🚗 Tasación de tu coche");
-
-# Se añade un espacio:
+# Espacio:
 st.markdown("<br>", unsafe_allow_html=True);
 
 # Texto:
@@ -177,7 +198,7 @@ for column in categorical_cols:
 with st.expander("📋 Datos ingresados para la predicción"):
     st.dataframe(df_input, use_container_width=True);
 
-# Se añade un espacio:
+# Espacio:
 st.markdown("<br>", unsafe_allow_html=True);
 
 # Se agrega el texto explicativo sobre el margen de error en MAPE con clases para el estilo:
@@ -192,7 +213,7 @@ st.markdown("""
     </div>
 """, unsafe_allow_html=True);
 
-# Se añade un espacio:
+# Espacio:
 st.markdown("<br>", unsafe_allow_html=True);
 
 # Se carga el modelo del hub de Hugging Face:
@@ -204,11 +225,8 @@ if st.button("🔍 Realizar Tasación"):
     prediccion_original = np.exp(prediccion); # Se realiza la transformación exponencial dado que el modelo está entrenado con los datos en logarítmico
     st.success(f"💰 El valor estimado de tu coche es: **{prediccion_original[0]:,.0f} $**");
 
-
-
 # Botón para volver al inicio en la barra lateral
 if st.sidebar.button("🏠 Volver al Inicio"): switch_page("main_page");
-
 
 # # # # #  FIN FUNCIÓN TASADOR PARTICULAR # # # # #
 

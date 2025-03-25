@@ -1,21 +1,22 @@
 
 # # # # # INICIO LIBRERÍAS # # # # #
 
-# Librería para pdoer utilizar Streamlit
+# Librería para poder utilizar Streamlit:
 import streamlit as st
 
 # Librería para poder cambiar de páginas de visualización:
 from streamlit_extras.switch_page_button import switch_page
 
-# Librería para el menú de opciones:
-from streamlit_option_menu import option_menu 
+# Librería para utilizar el menú de opciones (barra de navegación):
+from streamlit_option_menu import option_menu  
 
-# # # # #  FIN LIBRERÍAS # # # # #
+# # # # # FIN LIBRERÍAS # # # # #
+
 
 
 # # # # #  INICIO FUNCIÓN EMPRESA # # # # #
 
-# Configuración de la página
+# Configuración de la página:
 st.set_page_config(page_title = "🏢 Empresa 🏣", page_icon=":car:", layout="wide")
 
 
@@ -29,17 +30,34 @@ page_bg_color = """
     """
 st.markdown(page_bg_color, unsafe_allow_html = True);
 
-# # # Barra de Navegación Superior usando streamlit-options-menu # # #
+ # Espacio:
+st.markdown("<br>", unsafe_allow_html = True);
+
+# # # Barra de Navegación Superior # # #
 with st.container():
+    # Se define la barra de navegación:
     menu = option_menu(
-        menu_title = None,  # No título para el menú
+
+        # No se coloca título al menú:
+        menu_title = None,
+
+        # Se colocan las opciones de la barra de navegación:
         options = ["Inicio", "Tasación - Particular", "Tasación - Empresa", "Sobre Nosotros", "Nuestro Método", "Contáctanos"],
+
+        # Se colocan iconos acompañando a los textos:
         icons = ["house", "person-fill", "building", "info-circle", "clipboard-check", "phone"],
-        orientation = "horizontal",  # Menú horizontal
-        default_index = 2,  # Establecer "Inicio" como la opción por defecto
+
+        # Orientación horizontal de la barra:
+        orientation = "horizontal",
+
+        # Se establece visualmente que se está en la pantalla de 'Tasación - Empresas' [index = 2]
+        default_index = 2,
+
+        # Se define el estilo de la barra de navegación:
         styles={
-            "container": {"padding": "0!important", "background-color": "#fffafe"},  # Fondo como el del resto de la página
+            "container": {"padding": "0!important", "background-color": "#fffafe"},  # Se establece el color del container como el color de fondo
             "icon": {"color": "#5c0048", "font-size": "20px"},  # Color de los íconos
+            # Estilo de las letras:
             "nav-link": {
                 "font-size": "16px",
                 "text-align": "center",
@@ -50,37 +68,36 @@ with st.container():
             },
             "nav-link-selected": {"background-color": "#eeb1e1"},  # Color de la opción seleccionada
         }
-    )
+    );
 
-    # Redirigir según la opción seleccionada:
+    # Se redirije a la página correspondiente según la opción seleccionada:
     if menu == "Inicio":
         switch_page("main_page")
     elif menu == "Tasación - Particular":
-        switch_page("particular_page")
+        switch_page("particular_page");
     elif menu == "Tasación - Empresa":
-        pass
+        pass; # empresa_page es Tasación - Empresa por lo que no se hace nada si hacen click
     elif menu == "Sobre Nosotros":
-        switch_page("nosotros_page")
+        switch_page("nosotros_page");
     elif menu == "Nuestro Método":
-        switch_page("metodo_page")
+        switch_page("metodo_page");
     elif menu == "Contáctanos":
-        switch_page("contacto_page")
+        switch_page("contacto_page");
 
-
-# Título:
+# Título 🏢 Empresa 🏣:
 st.markdown("<h1 style = 'text-align: center'; font-family: \'Droid Sans Mono\', monospace;'> 🏢 Empresa 🏣 </h1>", unsafe_allow_html = True);
 
-# Añadir espacio con <br> (salto de línea) para un margen más grande
-st.markdown("<br>", unsafe_allow_html=True);
+# Espacio:
+st.markdown("<br>", unsafe_allow_html = True);
 
-# Crear columnas para poner la imagen y el texto al lado
-col1, col2 = st.columns([1, 3])  # Proporción de espacio, la imagen en la columna más pequeña (col1) y el texto en la más grande (col2)
+# Se crean dos columnas para poner la imagen y el texto al lado:
+col1, col2 = st.columns([1, 3]);  # Se coloca una proporción de 1/3 para que el texto ocupe más que la imagen
 
-# Columna 1: Imagen (al margen izquierdo)
+# Columna 1 - Imagen:
 with col1:
-    st.image("images/empresa_image.png", use_container_width = True)
+    st.image("images/empresa_image.png", use_container_width = True);
 
-# Columna 2: Texto
+# Columna 2 - Texto
 with col2:
     st.write("""
         ### 🚛 Empresas: Vende tu Flota de Vehículos de Manera Eficiente  
@@ -107,15 +124,13 @@ with col2:
         Con un proceso 100% digital, sencillo y sin papeleo innecesario, te ayudamos a gestionar la venta de tu flota sin complicaciones.  
 
         💼 **Optimiza el proceso de venta de tus vehículos con nuestra herramienta de tasación automatizada. ¡Súbelo ahora y obtén la mejor oferta!**  
-    """)
+    """);
 
-# Añadir espacio con <br> (salto de línea) para un margen más grande
+# Espacio:
 st.markdown("<br>", unsafe_allow_html=True);
 
-# Añadir un botón para iniciar el proceso de tasación
-if st.button("Iniciar proceso de tasación"):
-    # Este botón redirige a la página donde se iniciará el proceso de tasación
-    switch_page("tasar_coche_empresa_intro_page")
+# Botón para realizar la predicción:
+if st.button("Iniciar proceso de tasación"): switch_page("tasar_coche_empresa_intro_page");
 
 # Botón para volver al inicio en la barra lateral
 if st.sidebar.button("🏠 Volver al Inicio"): switch_page("main_page");

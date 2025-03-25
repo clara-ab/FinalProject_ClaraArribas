@@ -1,22 +1,22 @@
 
-
 # # # # # INICIO LIBRERÍAS # # # # #
 
-# Librería para poder utilizar Streamlit
+# Librería para poder utilizar Streamlit:
 import streamlit as st
 
 # Librería para poder cambiar de páginas de visualización:
 from streamlit_extras.switch_page_button import switch_page
 
-# Librería para el menú de opciones:
-from streamlit_option_menu import option_menu 
+# Librería para utilizar el menú de opciones (barra de navegación):
+from streamlit_option_menu import option_menu  
 
-# # # # #  FIN LIBRERÍAS # # # # #
+# # # # # FIN LIBRERÍAS # # # # #
 
 
-# # # # # INICIO CONTACTO FUNCTION # # # # #
 
-# Se configura la página para aprovechar todo el espacio:
+# # # # # INICIO NUESTRO MÉTODO FUNCTION # # # # #
+
+# Configuración de la página:
 st.set_page_config(page_title=" ⚙️ Nuestro Método 🖥️", page_icon=":car:", layout="wide");
 
 # Se aplica el color de fondo deseado:
@@ -29,17 +29,31 @@ page_bg_color = """
 """
 st.markdown(page_bg_color, unsafe_allow_html=True);
 
-# # # Barra de Navegación Superior usando streamlit-options-menu # # #
+# # # Barra de Navegación Superior # # #
 with st.container():
+    # Se define la barra de navegación:
     menu = option_menu(
-        menu_title = None,  # No título para el menú
+
+        # No se coloca título al menú:
+        menu_title = None,
+
+        # Se colocan las opciones de la barra de navegación:
         options = ["Inicio", "Tasación - Particular", "Tasación - Empresa", "Sobre Nosotros", "Nuestro Método", "Contáctanos"],
+
+        # Se colocan iconos acompañando a los textos:
         icons = ["house", "person-fill", "building", "info-circle", "clipboard-check", "phone"],
-        orientation = "horizontal",  # Menú horizontal
-        default_index = 4,  # Establecer "Inicio" como la opción por defecto
+
+        # Orientación horizontal de la barra:
+        orientation = "horizontal",
+
+        # Se establece visualmente que se está en la pantalla de 'Nuestro Método' [index = 4]
+        default_index = 4,
+
+        # Se define el estilo de la barra de navegación:
         styles={
-            "container": {"padding": "0!important", "background-color": "#fffafe"},  # Fondo como el del resto de la página
+            "container": {"padding": "0!important", "background-color": "#fffafe"},  # Se establece el color del container como el color de fondo
             "icon": {"color": "#5c0048", "font-size": "20px"},  # Color de los íconos
+            # Estilo de las letras:
             "nav-link": {
                 "font-size": "16px",
                 "text-align": "center",
@@ -50,33 +64,32 @@ with st.container():
             },
             "nav-link-selected": {"background-color": "#eeb1e1"},  # Color de la opción seleccionada
         }
-    )
+    );
 
-    # Redirigir según la opción seleccionada:
+    # Se redirije a la página correspondiente según la opción seleccionada:
     if menu == "Inicio":
         switch_page("main_page")
     elif menu == "Tasación - Particular":
-        switch_page("particular_page")
+        switch_page("particular_page");
     elif menu == "Tasación - Empresa":
-        switch_page("empresa_page")
+        switch_page("empresa_page"); 
     elif menu == "Sobre Nosotros":
-        switch_page("nosotros_page")
+        switch_page("nosotros_page"); 
     elif menu == "Nuestro Método":
-        pass
+        pass  # metodo_page es Nuestro Método por lo que no se hace nada si hacen click
     elif menu == "Contáctanos":
-        switch_page("contacto_page")
+        switch_page("contacto_page");
 
-# Espacio
+# Espacio:
+st.markdown("<br>", unsafe_allow_html = True);
+
+# Título ⚙️ Nuestro Método 🖥️:
+st.markdown("<h1 style='text-align: center; font-family: \"Droid Sans Mono\", monospace;'>⚙️ Nuestro Método 🖥️  </h1>", unsafe_allow_html=True);
+
+# Espacio:
 st.markdown("<br>", unsafe_allow_html=True)
 
-# Título
-st.markdown("""
-    <h1 style='text-align: center; font-family: "Droid Sans Mono", monospace;'>⚙️ Nuestro Método 🖥️ </h1>
-""", unsafe_allow_html=True)
-
-st.markdown("<br>", unsafe_allow_html=True)
-
-# Explicación del método
+# Texto explicativo del método:
 st.write("""
     ## 🔍 ¿Cómo desarrollamos el modelo de predicción?
     
@@ -112,21 +125,22 @@ st.write("""
     - Evaluación del rendimiento del modelo.
 
     Finalmente, el modelo entrenado ha sido almacenado en **Hugging Face Hub**, permitiendo su integración sin sobrecargar GitHub.
-""")
+""");
 
-st.markdown("<br>", unsafe_allow_html=True)
+# Espacio:
+st.markdown("<br>", unsafe_allow_html = True);
 
-# Botón para descargar el notebook del proyecto
+# Botón para descargar el notebook del proyecto:
 with open("src/FinalProject_ClaraArribas.ipynb", "rb") as file:
     st.download_button(
-        label="📥 Descargar Notebook Completo",
-        data=file,
-        file_name="FinalProject_ClaraArribas.ipynb",
-        mime="application/octet-stream"
-    )
+        label = "📥 Descargar Notebook Completo",
+        data = file,
+        file_name = "FinalProject_ClaraArribas.ipynb",
+        mime = "application/octet-stream"
+    );
 
+# Espacio:
 st.markdown("<br>", unsafe_allow_html=True)
 
-# Botón para volver al inicio en la barra lateral
-if st.sidebar.button("🏠 Volver al Inicio"): 
-    switch_page("main_page")
+
+# # # # # FIN NUESTRO MÉTODO FUNCTION # # # # #
