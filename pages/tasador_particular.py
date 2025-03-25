@@ -191,12 +191,17 @@ encoders = cargar_encoders();
 
 # Se aplican los encoders a las columnas categóricas:
 categorical_cols = df_input.select_dtypes(include=["object"]).columns.tolist();
+
+# Antes de aplicar la codificación y "dejar de entender" las variables categóricas, se hace una copia para mantenerlas:
+df_original = df_input.copy();
+
+# Se aplica el LabelEncoder a las columnas categóricas en df_input:
 for column in categorical_cols:
     df_input[column] = df_input[column].apply(lambda x: encoders[column].transform([x])[0] if x in encoders[column].classes_ else -1);
 
 # Se muestran los datos ingresados en un contenedor extendible:
 with st.expander("📋 Datos ingresados para la predicción"):
-    st.dataframe(df_input, use_container_width=True);
+    st.dataframe(df_original, use_container_width=True);
 
 # Espacio:
 st.markdown("<br>", unsafe_allow_html=True);

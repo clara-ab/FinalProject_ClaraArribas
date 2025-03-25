@@ -127,7 +127,7 @@ tipo_coche = st.selectbox("Tipo de Coche:", tipos_coche);
 st.session_state.tipo_coche = tipo_coche; # Se guarda el tipo del coche para poder invocarlo donde sea
 
 # Campo - Estado del Coche:
-estado_coche = st.selectbox("Estado del Coche:", ['good', 'excellent', 'like new', 'new', 'fair', 'salvage']);
+estado_coche = st.selectbox("Estado del Coche:", ['excellent', 'new', 'like new', 'good', 'fair', 'salvage']);
 st.session_state.estado_coche = estado_coche;  # Se guarda el estado del coche para poder invocarlo donde sea
 
 # Campo - Kilometraje: 

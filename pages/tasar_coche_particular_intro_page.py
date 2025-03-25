@@ -117,7 +117,7 @@ nombre = st.text_input("Nombre:");
 if nombre and not validar_letras(nombre): st.error("El nombre solo puede contener letras."); # Se comprueba si solo tiene letras
 
 # Campo - Apellido:
-apellidos = st.text_input("1er Apellido:");
+apellidos = st.text_input("Apellido:");
 if apellidos and not validar_letras(apellidos): st.error("Los apellidos solo pueden contener letras."); # Se comprueba si solo tiene letras
 
 # Campo - Email:
